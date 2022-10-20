@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/JoeDe/OneDrive/Desktop/py4e/Music_Library.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="200"/><column_width id="3" width="2422"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainTrack"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Album" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="82"/><column index="2" value="154"/><column index="3" value="264"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Artist" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="199"/><column index="2" value="250"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Genre" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="82"/><column index="2" value="133"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Track" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="82"/><column index="2" value="236"/><column index="3" value="142"/><column index="4" value="136"/><column index="5" value="82"/><column index="6" value="97"/><column index="7" value="92"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE &quot;Artist&quot; (
+	&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+	&quot;name&quot; TEXT)
+	
+CREATE TABLE &quot;Genre&quot; (
+	&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+	&quot;name&quot; TEXT)
+
+CREATE TABLE &quot;Album&quot; (
+	&quot;id&quot; INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	&quot;artist_id&quot; INTEGER,
+	&quot;title&quot; TEXT)
+
+CREATE TABLE &quot;Track&quot; (
+	&quot;id&quot; INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	&quot;title&quot; TEXT,
+	&quot;album_id&quot; INTEGER,
+	&quot;genre_id&quot; INTEGER,
+	&quot;len&quot; INTEGER, &quot;rating&quot; INTEGER, &quot;count&quot; INTEGER)
+
+INSERT INTO Artist (name) VALUES (&quot;Bleachers&quot;);
+INSERT INTO Artist (name) VALUES (&quot;The Format&quot;);
+
+INSERT INTO Genre (name) VALUES (&quot;Pop/Rock&quot;);
+INSERT INTO Genre (name) VALUES (&quot;Indie Rock&quot;);
+
+INSERT INTO Album (title, artist_id) VALUES (&quot;Strange Desire&quot;, 1);
+INSERT INTO Album (title, artist_id) VALUES (&quot;Interventions and Lullabies&quot;, 2);
+
+INSERT INTO Track (title, rating, len, count, album_id,genre_id) VALUES (&quot;The First Single&quot;, 5, 264,0, 2, 2);
+INSERT INTO Track (title, rating, len, count, album_id,genre_id) VALUES (&quot;Wait, Wait, Wait&quot;, 5, 193,0, 2, 2);
+INSERT INTO Track (title, rating, len, count, album_id,genre_id) VALUES (&quot;On Your Porch&quot;, 5, 311,0, 2, 2);
+INSERT INTO Track (title, rating, len, count, album_id,genre_id) VALUES (&quot;Rollercoaster&quot;, 5, 188,0, 1, 1);
+INSERT INTO Track (title, rating, len, count, album_id,genre_id) VALUES (&quot;I Wanna Get Better&quot;, 5, 304,0, 1, 1);
+INSERT INTO Track (title, rating, len, count, album_id,genre_id) VALUES (&quot;Wild Heart&quot;, 5, 200,0, 1, 1);
+
+SELECT Album.title, Artist.name FROM Album JOIN Artist ON Album.artist_id=Artist.id
+
+SELECT Album.title, Album.artist_id, Artist.id, Artist.name FROM Album JOIN Artist ON Album.artist_id=Artist.id
+
+SELECT Track.title, Genre.name FROM Track JOIN GENRE ON Track.genre_id=Genre.id
+
+SELECT Track.title, Artist.name, Album.title, Genre.name FROM Track JOIN Genre JOIN Album JOIN Artist ON Track.genre_id=Genre.id AND Track.album_id=Album.id AND Album.artist_id=Artist.id</sql><current_tab id="0"/></tab_sql></sqlb_project>
