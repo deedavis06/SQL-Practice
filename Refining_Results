@@ -1,0 +1,29 @@
+---Retrieve a list of employees ordered by department ID.---
+SELECT F_NAME, L_NAME, DEP_ID FROM EMPLOYEES 
+ORDER BY DEP_ID;
+
+--Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.--
+SELECT F_NAME,L_NAME, DEP_ID FROM EMPLOYEES ORDER BY
+DEP_ID DESC, L_NAME DESC;
+
+---For each department ID retrieve the number of employees in the department.---
+SELECT DEP_ID, COUNT(DEP_ID) AS COUNT FROM EMPLOYEES 
+GROUP BY DEP_ID;
+
+--For each department ID retrieve the number of employees in the department, and the average employee salary in the department..--
+SELECT DEP_ID, COUNT(DEP_ID) AS COUNT, AVG(SALARY) AS AVG_SALARY FROM EMPLOYEES 
+GROUP BY DEP_ID;
+	--Order the result set by Average Salary--
+SELECT DEP_ID, COUNT(DEP_ID) AS COUNT, AVG(SALARY) AS AVG_SALARY FROM EMPLOYEES 
+GROUP BY DEP_ID ORDER BY AVG_SALARY;
+---Limit the result to departments with fewer than 4 employees.---
+SELECT DEP_ID, COUNT(DEP_ID) AS COUNT, AVG(SALARY) AS AVG_SALARY FROM EMPLOYEES 
+GROUP BY DEP_ID HAVING COUNT(DEP_ID)<4
+ORDER BY AVG_SALARY;
+
+
+---Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.--
+SELECT E.F_NAME, E.L_NAME, D.DEP_NAME --E and D are aliases for table names--
+FROM EMPLOYEES AS E, DEPARTMENTS AS D  
+WHERE E.DEP_ID=D.DEPT_ID_DEP --DEP_ID from Employee table equals DEPT_ID_DEP in Departments table--
+ORDER BY D.DEP_NAME, E.L_NAME DESC;
